@@ -7,6 +7,7 @@ import { ContextProvider } from "./components/Store/Context";
 function App() {
   return (
     <ContextProvider>
+
       <Header />
       <Body />
       <Footer />

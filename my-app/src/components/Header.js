@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Context } from "./Store/Context";
 import Cart from "./Cart/Cart";
+import { bg_img } from "../constants";
 
 const Header = () => {
-  const { showCart, setShowCart } = useContext(Context);
+  const { showCart, setShowCart, cartCount } = useContext(Context);
 
   const toggleCart = () => {
     setShowCart(!showCart);
@@ -11,7 +12,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="text-white text-2xl bg-black p-5 flex justify-evenly">
+      <img className="w-full fixed -z-10" src={bg_img} alt="logo"></img>
+      <div className="text-white text-2xl p-5 flex justify-evenly">
         <div>Home</div>
         <div>Store</div>
         <div>About</div>
@@ -19,7 +21,7 @@ const Header = () => {
           onClick={toggleCart}
           className="px-3 rounded-md text-lg font-semibold bg-blue-800"
         >
-          Cart
+          Cart🛒{cartCount}
         </button>
       </div>
       {showCart && (
@@ -27,9 +29,14 @@ const Header = () => {
           <Cart />
         </div>
       )}
-      <h1 className="text-6xl text-center text-white p-10 font-bold bg-gray-400">
-        The Generics
-      </h1>
+      <div className="border border-white p-10 w-[50%] m-auto mt-40">
+        <h1 className="text-8xl text-center text-white font-bold">
+          The Generics
+        </h1>
+        <h2 className="text-white text-center text-xl pt-10">
+          India's No. 1 E-commerce Store
+        </h2>
+      </div>
     </>
   );
 };
