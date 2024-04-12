@@ -12,7 +12,7 @@ const Cart = () => {
   });
 
   return (
-    <div className="w-[20%] text-white bg-gray-900 shadow-lg bg-opacity-70 rounded-xl h-[620px] absolute top-5 left-2/3 ml-16">
+    <div className="w-[80%] md:w-[20%] text-white bg-gray-900 shadow-lg md:bg-opacity-70 rounded-xl h-auto md:h-auto absolute top-0 md:top-5 left-0 md:left-2/3 ml-10  md:ml-16">
       <div className="flex justify-between p-6 font-semibold text-xl">
         <div>Cart</div>
         <button
@@ -30,9 +30,9 @@ const Cart = () => {
         <div className="p-2 font-semibold text-lg">Total Price:{totalBill}</div>
         <button
           onClick={() => alert("Order Placed!")}
-          className="px-4 py-2 font-semibold text-lg text-white bg-blue-700 rounded-lg ml-52"
+          className="px-10 py-2 font-semibold text-lg text-white bg-blue-700 rounded-lg mb-2"
         >
-          Place Order
+          Order
         </button>
       </div>
     </div>
