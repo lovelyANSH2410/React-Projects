@@ -13,10 +13,10 @@ const Header = () => {
 
   return (
     <>
-      <img className="w-full fixed -z-10" src={bg_img} alt="logo"></img>
+      <img className="w-full absolute -z-10" src={bg_img} alt="logo"></img>
       <div className="text-white text-2xl p-5 flex justify-evenly">
-        <div className="border-2 border-white px-2 hover:opacity-80">Home</div>
-        <div className="border-2 border-white px-2 hover:opacity-80">Store</div>
+        <Link to='/' className="border-2 border-white px-2 hover:opacity-80">Home</Link>
+        <Link to='/store' className="border-2 border-white px-2 hover:opacity-80">Store</Link>
         <Link to='/about' className="border-2 border-white px-2 hover:opacity-80">About</Link>
         <button
           onClick={toggleCart}

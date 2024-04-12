@@ -7,6 +7,7 @@ import App from "./App";
 import Body from "./components/Body";
 import About from "./components/About";
 import { createBrowserRouter } from "react-router-dom";
+import Store from "./components/Store";
 
 const appRouter = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Body /> },
+      { path: "/store", element: <Store /> },
       { path: "/about", element: <About /> },
     ],
   },
