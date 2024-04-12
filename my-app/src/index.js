@@ -8,6 +8,7 @@ import Body from "./components/Body";
 import About from "./components/About";
 import { createBrowserRouter } from "react-router-dom";
 import Store from "./components/Store";
+import Movie from "./components/Movie";
 
 const appRouter = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Body /> },
       { path: "/store", element: <Store /> },
       { path: "/about", element: <About /> },
+      { path: "/movie", element: <Movie /> },
     ],
   },
 ]);

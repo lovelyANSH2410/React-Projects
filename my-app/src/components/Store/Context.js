@@ -6,6 +6,7 @@ export const Context = createContext();
 export const ContextProvider = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [dataList, setDataList] = useState(data);
   const [totalBill, setTotalBill] = useState(0);
   const [cartCount, setCartCount] = useState(null);
@@ -15,6 +16,8 @@ export const ContextProvider = ({ children }) => {
     setShowCart,
     cartItems,
     setCartItems,
+    movies,
+    setMovies,
     dataList,
     setDataList,
     cartCount,
