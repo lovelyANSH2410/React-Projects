@@ -15,9 +15,9 @@ const Header = () => {
     <>
       <img className="w-full absolute -z-10" src={bg_img} alt="logo"></img>
       <div className="text-white text-2xl p-5 flex justify-evenly">
-        <Link to='/' className="border-2 border-white px-2 hover:opacity-80">Home</Link>
-        <Link to='/store' className="border-2 border-white px-2 hover:opacity-80">Store</Link>
-        <Link to='/about' className="border-2 border-white px-2 hover:opacity-80">About</Link>
+        <Link to='/' className="border-2 rounded-md border-white px-2 hover:opacity-80">Home</Link>
+        <Link to='/store' className="border-2 rounded-md border-white px-2 hover:opacity-80">Store</Link>
+        <Link to='/about' className="border-2 rounded-md border-white px-2 hover:opacity-80">About</Link>
         <button
           onClick={toggleCart}
           className="px-3 rounded-md text-lg font-semibold bg-blue-800 hover:bg-opacity-80"

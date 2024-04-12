@@ -1,33 +1,32 @@
 export const data = [
   {
     id: 1,
-    name: "Album 1",
+    name: "Model",
     image_URL:
-      "https://www.sfcustomizables.com/cdn/shop/products/BlackFramedPrint_5112e882-e249-4034-9be4-5e90fc72b917_1800x1800.jpg?v=1645505984",
-    price: 12.99,
+      "https://shop.spacex.com/cdn/shop/products/Unknown-1_600x.png?v=1681580111",
+    price: 300,
   },
   {
     id: 2,
-    name: "Album 2",
+    name: "T shirt",
     image_URL:
-      "https://www.sfcustomizables.com/cdn/shop/products/BlackFramedPrint_5112e882-e249-4034-9be4-5e90fc72b917_1800x1800.jpg?v=1645505984",
-
-    price: 12.99,
+      "https://shop.spacex.com/cdn/shop/products/STARSHIPTESTFLIGHT_MENS-T-SHIRT-BLACK-BACK_600x.png?v=1678921529",
+    price: 30,
   },
   {
     id: 3,
-    name: "Album 3",
+    name: "Tumbler",
     image_URL:
-      "https://www.sfcustomizables.com/cdn/shop/products/BlackFramedPrint_5112e882-e249-4034-9be4-5e90fc72b917_1800x1800.jpg?v=1645505984",
+      "https://shop.spacex.com/cdn/shop/files/StarlinkAnywhereTumblerMiniMilitaryGreen_600x.png?v=1700088198",
 
-    price: 12.99,
+    price: 46,
   },
   {
     id: 4,
-    name: "Album 4",
+    name: "Hoodie",
     image_URL:
-      "https://www.sfcustomizables.com/cdn/shop/products/BlackFramedPrint_5112e882-e249-4034-9be4-5e90fc72b917_1800x1800.jpg?v=1645505984",
+      "https://shop.spacex.com/cdn/shop/files/SpaceXHoodieUnisexBlackFront2_600x.png?v=1695251702",
 
-    price: 12.99,
+    price: 65,
   },
 ];

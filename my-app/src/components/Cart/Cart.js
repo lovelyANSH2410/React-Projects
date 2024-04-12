@@ -12,7 +12,7 @@ const Cart = () => {
   });
 
   return (
-    <div className="w-[20%] text-white bg-gray-900 shadow-lg rounded-xl h-[620px] absolute top-5 left-2/3 ml-16">
+    <div className="w-[20%] text-white bg-gray-900 shadow-lg bg-opacity-70 rounded-xl h-[620px] absolute top-5 left-2/3 ml-16">
       <div className="flex justify-between p-6 font-semibold text-xl">
         <div>Cart</div>
         <button
