@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "./Store/Context";
 import Cart from "./Cart/Cart";
 import { bg_img } from "../constants";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { showCart, setShowCart, cartCount } = useContext(Context);
@@ -14,12 +15,12 @@ const Header = () => {
     <>
       <img className="w-full fixed -z-10" src={bg_img} alt="logo"></img>
       <div className="text-white text-2xl p-5 flex justify-evenly">
-        <div>Home</div>
-        <div>Store</div>
-        <div>About</div>
+        <div className="border-2 border-white px-2 hover:opacity-80">Home</div>
+        <div className="border-2 border-white px-2 hover:opacity-80">Store</div>
+        <Link to='/about' className="border-2 border-white px-2 hover:opacity-80">About</Link>
         <button
           onClick={toggleCart}
-          className="px-3 rounded-md text-lg font-semibold bg-blue-800"
+          className="px-3 rounded-md text-lg font-semibold bg-blue-800 hover:bg-opacity-80"
         >
           Cart🛒{cartCount}
         </button>
@@ -29,14 +30,6 @@ const Header = () => {
           <Cart />
         </div>
       )}
-      <div className="border border-white p-10 w-[50%] m-auto mt-40">
-        <h1 className="text-8xl text-center text-white font-bold">
-          The Generics
-        </h1>
-        <h2 className="text-white text-center text-xl pt-10">
-          India's No. 1 E-commerce Store
-        </h2>
-      </div>
     </>
   );
 };
