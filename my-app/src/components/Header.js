@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <>
       <img className="fixed -z-10 object-cover h-full md:h-auto md:object-cover" src={bg_img} alt="logo"></img>
-      <div className="text-white text-xl p-5 flex justify-evenly">
+      <div className="text-white text-2xl p-5 flex justify-evenly w-[70%] m-auto">
         <Link to='/' className="border-2  border-white px-2 hover:opacity-80">Home</Link>
         <Link to='/store' className="border-2  border-white px-2 hover:opacity-80">Store</Link>
         <Link to='/about' className="border-2 border-white px-2 hover:opacity-80">About</Link>

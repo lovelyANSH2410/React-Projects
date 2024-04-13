@@ -13,7 +13,7 @@ const AddMovieForm = (props) => {
       release_date: releaseDate,
     };
 
-    const response = await fetch(
+    await fetch(
       "https://react-ecom-8f790-default-rtdb.firebaseio.com/movies.json",
       {
         method: "POST",
@@ -24,8 +24,6 @@ const AddMovieForm = (props) => {
       }
     );
 
-    const data = await response.json();
-    console.log(data);
     props.toggleForm();
   };
 

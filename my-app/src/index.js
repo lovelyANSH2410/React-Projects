@@ -10,6 +10,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Store from "./components/Store";
 import Movie from "./components/Movie";
 import ContactUS from "./components/ContactUS";
+import ProductDetails from "./components/ProductDetails";
 
 const appRouter = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Body /> },
       { path: "/store", element: <Store /> },
+      { path: "/product/:id", element: <ProductDetails /> },
       { path: "/about", element: <About /> },
       { path: "/contactus", element: <ContactUS /> },
       { path: "/movie", element: <Movie /> },

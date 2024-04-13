@@ -2,6 +2,7 @@ export const data = [
   {
     id: 1,
     name: "Model",
+    desc: "Starship spacecraft Model 1",
     image_URL:
       "https://shop.spacex.com/cdn/shop/products/Unknown-1_600x.png?v=1681580111",
     price: 300,
@@ -9,6 +10,7 @@ export const data = [
   {
     id: 2,
     name: "T shirt",
+    desc: "Men Full Sleeve Printed T shirt",
     image_URL:
       "https://shop.spacex.com/cdn/shop/products/STARSHIPTESTFLIGHT_MENS-T-SHIRT-BLACK-BACK_600x.png?v=1678921529",
     price: 30,
@@ -16,6 +18,7 @@ export const data = [
   {
     id: 3,
     name: "Tumbler",
+    desc: "Space ship model water Tumbler",
     image_URL:
       "https://shop.spacex.com/cdn/shop/files/StarlinkAnywhereTumblerMiniMilitaryGreen_600x.png?v=1700088198",
 
@@ -24,6 +27,7 @@ export const data = [
   {
     id: 4,
     name: "Hoodie",
+    desc: "Men Full Sleeve Printed Hooded Sweatshirt",
     image_URL:
       "https://shop.spacex.com/cdn/shop/files/SpaceXHoodieUnisexBlackFront2_600x.png?v=1695251702",
 
