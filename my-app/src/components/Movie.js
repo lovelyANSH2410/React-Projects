@@ -39,6 +39,20 @@ const Movie = () => {
     setOpenForm(!openForm);
   };
 
+  const deleteItem = async (episode_id) => {
+    try {
+      await fetch(
+        `https://react-ecom-8f790-default-rtdb.firebaseio.com/movies/${episode_id}.json`,
+        {
+          method: "DELETE",
+        }
+      );
+      fetchData();
+    } catch (error) {
+      console.log("Error deleting item:", error);
+    }
+  };
+
   return (
     <div className="text-center mt-20 mb-40">
       <button
@@ -54,6 +68,8 @@ const Movie = () => {
         Add New
       </button>
       {openForm && <AddMovieForm toggleForm={toggleForm} />}
+      {!isLoading && movies.length === 0 && <p className="text-6xl m-20 text-white">Found no movies.</p>}
+      
       {isLoading ? (
         <h1 className="text-6xl m-20 text-white">Searching for movies...</h1>
       ) : (
@@ -69,6 +85,12 @@ const Movie = () => {
               <p className="p-2 w-[100%] italic leading-relaxed">
                 {item.opening_crawl}
               </p>
+              <button
+                className="border-2 m-2 font-bold border-white p-2 rounded-md text-white hover:scale-105 duration-500 hover:opacity-80"
+                onClick={() => deleteItem(item.episode_id)}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))
