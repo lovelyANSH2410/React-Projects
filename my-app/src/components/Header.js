@@ -18,6 +18,7 @@ const Header = () => {
         <Link to='/' className="border-2  border-white px-2 hover:opacity-80">Home</Link>
         <Link to='/store' className="border-2  border-white px-2 hover:opacity-80">Store</Link>
         <Link to='/about' className="border-2 border-white px-2 hover:opacity-80">About</Link>
+        <Link to='/contactus' className="border-2 border-white px-2 hover:opacity-80">Contact Us</Link>
         <Link to='/movie' className="border-2 border-white px-2 hover:opacity-80">Movies</Link>
         <button
           onClick={toggleCart}
