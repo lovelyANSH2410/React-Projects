@@ -1,18 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Context } from "./Store/Context";
 
 const Movie = () => {
   const { movies, setMovies } = useContext(Context);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
-    const data = await fetch("https://swapi.dev/api/films/");
-    const json = await data.json();
-    const movieData = json?.results;
-    setIsLoading(false);
-    setMovies(movieData);
-  };
+    try {
+      const data = await fetch("https://swapi.dev/api/films/");
+      const json = await data.json();
+      const movieData = json?.results;
+      setIsLoading(false);
+      setMovies(movieData);
+    } catch (error) {
+      console.log("Error fetching data:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <div className="text-center mt-20 mb-40">
