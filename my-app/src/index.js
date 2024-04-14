@@ -12,14 +12,15 @@ import Movie from "./components/Movie";
 import ContactUS from "./components/ContactUS";
 import ProductDetails from "./components/ProductDetails";
 import Login from "./components/Login";
+import { AuthContextProvider } from "./components/Store/authContext";
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Body /> },
-      { path: "/login", element: <Login /> },
+      { path: "/", element: <Login /> },
+      { path: "/home", element: <Body /> },
       { path: "/store", element: <Store /> },
       { path: "/product/:id", element: <ProductDetails /> },
       { path: "/about", element: <About /> },
@@ -30,7 +31,11 @@ const appRouter = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter}></RouterProvider>);
+root.render(
+  <AuthContextProvider>
+    <RouterProvider router={appRouter}></RouterProvider>
+  </AuthContextProvider>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
