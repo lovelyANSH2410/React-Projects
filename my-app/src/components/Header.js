@@ -13,7 +13,7 @@ const Header = () => {
 
   const handleSignOut = () => {
     authCtx.logout();
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   const toggleCart = () => {
@@ -62,7 +62,7 @@ const Header = () => {
             </Link>
             <button
               onClick={toggleCart}
-              className="px-3 rounded-md text-lg font-semibold bg-blue-800 hover:bg-opacity-80"
+              className="border border-white px-2 hover:opacity-80"
             >
               Cart🛒{cartCount}
             </button>
