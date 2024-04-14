@@ -13,6 +13,7 @@ const ItemCard = () => {
     } else {
       setCartItems([...cartItems, obj]);
       setCartCount(cartCount + 1);
+      localStorage.setItem("cartItems", JSON.stringify([...cartItems, obj]));
     }
   };
 

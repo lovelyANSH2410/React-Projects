@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "./Store/Context";
 import Cart from "./Cart/Cart";
 import { bg_img } from "../constants";
@@ -15,6 +15,14 @@ const Header = () => {
     authCtx.logout();
     navigate("/", { replace: true });
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      authCtx.logout();
+      navigate("/", { replace: true });
+    }, 300000);
+    return () => clearTimeout(timer);
+  }, [authCtx, navigate]);
 
   const toggleCart = () => {
     setShowCart(!showCart);
