@@ -17,6 +17,32 @@ const Login = () => {
     setIsLoading(true);
 
     if (isSignInForm) {
+      try {
+        const response = await fetch(
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD8cZBbUFAN7z96zrU7MlH8uW8qLG5NEjI",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: enteredEmail,
+              password: enteredPass,
+              returnSecureToken: true,
+            }),
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        setIsLoading(false);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+        } else {
+          const data = await response.json();
+          setErrorMsg(data.error.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
     } else {
       try {
         const response = await fetch(
