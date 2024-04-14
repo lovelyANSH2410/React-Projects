@@ -15,11 +15,11 @@ const Header = () => {
     <>
       <img className="fixed -z-10 object-cover h-full md:h-auto md:object-cover" src={bg_img} alt="logo"></img>
       <div className="text-white text-2xl p-5 flex justify-evenly w-[70%] m-auto">
-        <Link to='/' className="border-2  border-white px-2 hover:opacity-80">Home</Link>
-        <Link to='/store' className="border-2  border-white px-2 hover:opacity-80">Store</Link>
-        <Link to='/about' className="border-2 border-white px-2 hover:opacity-80">About</Link>
-        <Link to='/contactus' className="border-2 border-white px-2 hover:opacity-80">Contact Us</Link>
-        <Link to='/movie' className="border-2 border-white px-2 hover:opacity-80">Movies</Link>
+        <Link to='/' className="border  border-white px-2 hover:opacity-80">Home</Link>
+        <Link to='/store' className="border  border-white px-2 hover:opacity-80">Store</Link>
+        <Link to='/about' className="border border-white px-2 hover:opacity-80">About</Link>
+        <Link to='/contactus' className="border border-white px-2 hover:opacity-80">Contact Us</Link>
+        <Link to='/movie' className="border border-white px-2 hover:opacity-80">Movies</Link>
         <button
           onClick={toggleCart}
           className="px-3 rounded-md text-lg font-semibold bg-blue-800 hover:bg-opacity-80"

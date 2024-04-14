@@ -19,7 +19,7 @@ const About = () => {
         >
           {" "}
           <img
-            className="w-10 m-auto my-2"
+            className="w-10 m-auto my-2 rounded-full"
             src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_1280.png"
             href="https://github.com/lovelyANSH2410"
             alt="logo"

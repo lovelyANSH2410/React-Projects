@@ -11,6 +11,7 @@ import Store from "./components/Store";
 import Movie from "./components/Movie";
 import ContactUS from "./components/ContactUS";
 import ProductDetails from "./components/ProductDetails";
+import Login from "./components/Login";
 
 const appRouter = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Body /> },
+      { path: "/login", element: <Login /> },
       { path: "/store", element: <Store /> },
       { path: "/product/:id", element: <ProductDetails /> },
       { path: "/about", element: <About /> },

@@ -3,14 +3,25 @@ import { useParams } from "react-router-dom";
 import { Context } from "./Store/Context";
 
 const ProductDetails = () => {
+  const { cartItems, setCartItems, cartCount, setCartCount } =
+    useContext(Context);
   const params = useParams();
   const { dataList } = useContext(Context);
 
-  console.log(params.id);
   const selectedItem = dataList.filter(
     (item) => item.id === parseInt(params.id)
   );
   const data = selectedItem[0];
+
+  const saveToCart = (obj) => {
+    const existingItem = cartItems.find((item) => item.id === obj.id);
+    if (existingItem) {
+      alert("Item already in the cart");
+    } else {
+      setCartItems([...cartItems, obj]);
+      setCartCount(cartCount + 1);
+    }
+  };
 
   return (
     <div>
@@ -37,10 +48,15 @@ const ProductDetails = () => {
                 17,202 ratings and 1,587 reviews
               </div>
             </div>
-            <button className="text-white px-5 font-semibold p-2 rounded-md bg-blue-700">
+            <button
+              className="text-white px-5 font-semibold p-2 rounded-md bg-blue-700 hover:bg-opacity-80"
+              onClick={() => {
+                saveToCart(data);
+              }}
+            >
               Add to cart
             </button>
-            <button className="text-white m-2 px-5 font-semibold p-2 rounded-md bg-blue-700">
+            <button className="text-white m-2 px-5 font-semibold p-2 rounded-md bg-blue-700 hover:bg-opacity-80">
               Buy Now
             </button>
             <div>

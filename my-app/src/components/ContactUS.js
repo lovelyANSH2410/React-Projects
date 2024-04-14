@@ -24,6 +24,8 @@ const ContactUS = () => {
       }
     );
 
+    alert('Thanks for reaching out to us, We will get back to you soon.')
+
     e.target.elements.name.value = "";
     e.target.elements.email.value = "";
     e.target.elements.contact.value = "";

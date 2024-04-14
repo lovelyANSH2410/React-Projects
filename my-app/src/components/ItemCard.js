@@ -17,14 +17,16 @@ const ItemCard = () => {
   };
 
   return dataList.map((item) => (
-    <Link to={`/product/${item.id}`} key={item.id}>
+    <div key={item.id}>
       <div className="w-60 md:w-80 mx-10 hover:scale-105 duration-500">
         <h3 className="text-lg font-semibold py-2 text-center">{item.name}</h3>
-        <img
-          className="h-60 md:h-80 w-80 rounded-3xl opacity-80"
-          src={item.image_URL}
-          alt="logo"
-        ></img>
+        <Link to={`/product/${item.id}`}>
+          <img
+            className="h-60 md:h-80 w-80 rounded-3xl opacity-80"
+            src={item.image_URL}
+            alt="logo"
+          ></img>
+        </Link>
         <div className="flex justify-between p-2">
           <h3 className="text-lg font-bold">${item.price}</h3>
           <button
@@ -37,7 +39,7 @@ const ItemCard = () => {
           </button>
         </div>
       </div>
-    </Link>
+    </div>
   ));
 };
 

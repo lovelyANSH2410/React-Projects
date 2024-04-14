@@ -27,10 +27,10 @@ const Cart = () => {
           Items
         </div>
         <CartItem />
-        <div className="p-2 font-semibold text-lg">Total Price:{totalBill}</div>
+        <div className="p-2 font-semibold text-lg">Total Price:${totalBill}</div>
         <button
           onClick={() => alert("Order Placed!")}
-          className="px-10 py-2 font-semibold text-lg text-white bg-blue-700 rounded-lg mb-2"
+          className="px-10 py-2 font-semibold text-lg text-white bg-blue-700 rounded-lg mb-2 hover:bg-opacity-80"
         >
           Order
         </button>
