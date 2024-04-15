@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "./Store/Context";
+import AuthContext from "./Store/authContext";
 
 const ProductDetails = () => {
   const { cartItems, setCartItems, cartCount, setCartCount } =
     useContext(Context);
+  const { user } = useContext(AuthContext);
   const params = useParams();
   const { dataList } = useContext(Context);
 
@@ -20,6 +22,7 @@ const ProductDetails = () => {
     } else {
       setCartItems([...cartItems, obj]);
       setCartCount(cartCount + 1);
+      localStorage.setItem(user, JSON.stringify([...cartItems, obj]));
     }
   };
 

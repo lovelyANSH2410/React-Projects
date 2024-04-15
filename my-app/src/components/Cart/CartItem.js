@@ -1,29 +1,38 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../Store/Context";
+import AuthContext from "../Store/authContext";
 
 const CartItem = () => {
   const { cartItems, setCartItems, setCartCount } = useContext(Context);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem("cartItems");
-    if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
-      setCartCount(JSON.parse(storedCartItems).length);
-    }
-  }, [setCartItems, setCartCount]);
+    const fetchData = async () => {
+      if (user) {
+        const storedCartItems = localStorage.getItem(user);
+        if (storedCartItems) {
+          setCartItems(JSON.parse(storedCartItems));
+          setCartCount(JSON.parse(storedCartItems).length);
+        }
+      }
+    };
+
+    fetchData(); // Call the async function
+
+    // Ensure useEffect runs only when user is set
+  }, [setCartItems, setCartCount, user]);
 
   const removeFromCart = (obj) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== obj.id);
     setCartItems(updatedCartItems);
     setCartCount((prevCount) => prevCount - 1);
 
-    const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const storedCartItems = JSON.parse(localStorage.getItem(user)) || [];
 
-    // Filter out the item to be removed and update the remaining items in local storage
     const updatedStoredCartItems = storedCartItems.filter(
       (item) => item.id !== obj.id
     );
-    localStorage.setItem("cartItems", JSON.stringify(updatedStoredCartItems));
+    localStorage.setItem(user, JSON.stringify(updatedStoredCartItems));
   };
 
   return (

@@ -80,6 +80,7 @@ const Header = () => {
             >
               Sign Out
             </button>
+            <button className="md:hidden">☰</button>
           </div>
           {showCart && (
             <div className="relative">

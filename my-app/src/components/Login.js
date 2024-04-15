@@ -51,7 +51,7 @@ const Login = () => {
         setIsLoading(false);
         if (response.ok) {
           const data = await response.json();
-          authCtx.login(data.idToken);
+          authCtx.login(data.idToken, enteredEmail);
           navigate("/home")
         } else {
           const data = await response.json();

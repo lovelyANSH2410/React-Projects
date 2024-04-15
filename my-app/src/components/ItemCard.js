@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Context } from "./Store/Context";
 import { Link } from "react-router-dom";
+import AuthContext from "./Store/authContext";
 
 const ItemCard = () => {
   const { dataList, cartItems, setCartItems, cartCount, setCartCount } =
     useContext(Context);
+  const { user } = useContext(AuthContext);
 
   const saveToCart = (obj) => {
     const existingItem = cartItems.find((item) => item.id === obj.id);
@@ -13,8 +15,9 @@ const ItemCard = () => {
     } else {
       setCartItems([...cartItems, obj]);
       setCartCount(cartCount + 1);
-      localStorage.setItem("cartItems", JSON.stringify([...cartItems, obj]));
+      localStorage.setItem(user, JSON.stringify([...cartItems, obj]));
     }
+
   };
 
   return dataList.map((item) => (
