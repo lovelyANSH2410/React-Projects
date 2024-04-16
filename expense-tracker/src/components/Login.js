@@ -47,6 +47,7 @@ const Login = () => {
         if (response.ok) {
           const data = await response.json();
           console.log(data.idToken);
+          localStorage.setItem("idToken", data.idToken);
           navigate("/home");
         } else {
           const data = await response.json();
