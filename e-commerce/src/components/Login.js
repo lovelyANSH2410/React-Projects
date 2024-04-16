@@ -52,7 +52,7 @@ const Login = () => {
         if (response.ok) {
           const data = await response.json();
           authCtx.login(data.idToken, enteredEmail);
-          navigate("/home")
+          navigate("/home");
         } else {
           const data = await response.json();
           setErrorMsg(data.error.message);
@@ -114,8 +114,7 @@ const Login = () => {
         <h1 className="font-bold text-3xl p-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
-        <p className="text-red-600 ml-4 font-semibold">{errorMsg}
-        </p>
+        <p className="text-red-600 ml-4 font-semibold">{errorMsg}</p>
         <input
           type="text"
           ref={email}
