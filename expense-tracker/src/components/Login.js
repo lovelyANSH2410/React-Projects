@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [singIn, setSignIn] = useState(false);
   const [errMsg, setErrMsg] = useState(null);
+  const navigate = useNavigate();
 
   const email = useRef(null);
   const pass = useRef(null);
@@ -12,7 +14,7 @@ const Login = () => {
     if (errMsg) {
       const timer = setTimeout(() => {
         setErrMsg(null);
-      }, 2000);
+      }, 4000);
 
       return () => {
         clearTimeout(timer);
@@ -45,6 +47,7 @@ const Login = () => {
         if (response.ok) {
           const data = await response.json();
           console.log(data.idToken);
+          navigate("/home");
         } else {
           const data = await response.json();
           setErrMsg(data.error.message);
@@ -89,7 +92,7 @@ const Login = () => {
       <h1 className="text-2xl py-8 font-semibold text-center">
         {!singIn ? "Sign up" : "Login"}
       </h1>
-      <p className="text-lg text-red-500">{errMsg}</p>
+      <p className="text-lg py-1 text-red-500">{errMsg}</p>
       <form
         className="flex justify-center flex-col w-[70%]  mx-auto space-y-4"
         onSubmit={(e) => {
