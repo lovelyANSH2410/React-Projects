@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [singIn, setSignIn] = useState(false);
+  const [singIn, setSignIn] = useState(true);
   const [errMsg, setErrMsg] = useState(null);
   const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const Login = () => {
       }
     } else {
       try {
-        const response = fetch(
+        const response = await fetch(
           "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD66jURNjlpKIlniFkfom3AFtWFiTeWF0w",
           {
             method: "POST",

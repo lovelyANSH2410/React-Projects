@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [profile, setProfile] = useState(false);
@@ -7,6 +8,9 @@ const Header = () => {
   const [displayName, setDisplayName] = useState(null);
   const [photoURL, setPhotoURL] = useState(null);
   const [profileComplete, setProfileComplete] = useState(false);
+  const navigate = useNavigate();
+
+  const isLoggedIn = !!tokenID;
 
   const handleProfile = () => {
     setProfile(!profile);
@@ -28,9 +32,11 @@ const Header = () => {
         if (response.ok) {
           const data = await response.json();
           const data1 = data.users[0];
+          data1.displayName
+            ? setProfileComplete(true)
+            : setProfileComplete(false);
           setDisplayName(data1.displayName);
           setPhotoURL(data1.photoUrl);
-          setProfileComplete(true);
         } else {
           const data1 = await response.json();
           const msg = data1.error.message;
@@ -44,6 +50,11 @@ const Header = () => {
     fetchData();
   }, [tokenID]);
 
+  const handleLogout = () => {
+    localStorage.removeItem("idToken");
+    navigate("/");
+  };
+
   return (
     <div>
       <div className="flex bg-white justify-evenly text-xl shadow-md w-full font-medium">
@@ -52,7 +63,7 @@ const Header = () => {
           <h1>Products</h1>
           <h1>About us</h1>
         </div>
-        {!profileComplete && (
+        {!profileComplete && isLoggedIn ? (
           <h1 className="text-lg text-center m-4 p-4">
             Your profile is incomplete.{" "}
             <button
@@ -62,15 +73,29 @@ const Header = () => {
               Complete Now.
             </button>
           </h1>
+        ) : (
+          ""
         )}
-        <div className="flex my-5">
-          <img
-            className="w-14 h-14 mx-2 rounded-full"
-            src={photoURL}
-            alt="logo"
-          />
-          <h1 className="py-4">{displayName}</h1>
-        </div>
+        {isLoggedIn && (
+          <div className="flex my-5">
+            {profileComplete && (
+              <>
+                <img
+                  className="w-14 h-14 mx-2 rounded-full"
+                  src={photoURL}
+                  alt="logo"
+                />
+                <h1 className="py-4">{displayName}</h1>
+              </>
+            )}
+            <button
+              className="mx-4 px-4 m-2 text-lg bg-blue-500 text-white font-semibold shadow-md rounded-md"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
       {profile && <Profile handleProfile={handleProfile} />}
     </div>
