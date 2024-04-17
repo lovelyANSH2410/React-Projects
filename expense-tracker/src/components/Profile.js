@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-const Profile = () => {
+const Profile = (props) => {
   const tokenID = localStorage.getItem("idToken");
   const name = useRef(null);
   const photoURL = useRef(null);
@@ -24,6 +24,7 @@ const Profile = () => {
           }),
         }
       );
+      props.handleProfile();
       if (response.ok) {
         const data = await response.json();
         console.log(data);

@@ -10,11 +10,17 @@ const Login = () => {
   const pass = useRef(null);
   const confirmpass = useRef(null);
 
+  const matchPassword = () => {
+    if(pass.current.value === confirmpass.current.value) {
+        setErrMsg("Password Matched!")
+    }
+  }
+
   useEffect(() => {
     if (errMsg) {
       const timer = setTimeout(() => {
         setErrMsg(null);
-      }, 4000);
+      }, 2000);
 
       return () => {
         clearTimeout(timer);
@@ -93,7 +99,7 @@ const Login = () => {
       <h1 className="text-2xl py-8 font-semibold text-center">
         {!singIn ? "Sign up" : "Login"}
       </h1>
-      <p className="text-lg py-1 text-red-500">{errMsg}</p>
+      <p className="text-lg py-1 font-semibold text-red-500">{errMsg}</p>
       <form
         className="flex justify-center flex-col w-[70%]  mx-auto space-y-4"
         onSubmit={(e) => {
@@ -116,6 +122,7 @@ const Login = () => {
           <input
             className="border border-gray-400 p-2 rounded-md"
             placeholder="Confirm password"
+            onChange={matchPassword}
             ref={confirmpass}
           />
         )}
