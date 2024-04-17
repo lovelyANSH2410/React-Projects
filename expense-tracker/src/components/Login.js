@@ -111,9 +111,7 @@ const Login = () => {
         }
       );
       if (response.ok) {
-        //
-        const data = await response.json();
-        console.log(data);
+        alert("Password reset link has been sent to you email.")
       } else {
         const data = await response.json();
         console.log(data);
