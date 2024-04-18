@@ -53,7 +53,6 @@ const Login = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          console.log(data.idToken);
           localStorage.setItem("idToken", data.idToken);
           localStorage.setItem("user", enteredEmail);
           navigate("/home");
