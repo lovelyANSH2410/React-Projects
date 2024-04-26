@@ -3,6 +3,7 @@ import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/authSlice";
+import { toggleTheme } from "../store/themeSlice";
 
 const Header = () => {
   const [profile, setProfile] = useState(false);
@@ -13,9 +14,14 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((store) => store.auth.isAuthenticated);
+  const isDarkTheme = useSelector((store) => store.theme.isDarkTheme);
 
   const handleProfile = () => {
     setProfile(!profile);
+  };
+
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
   };
 
   useEffect(() => {
@@ -59,12 +65,12 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <div className="flex bg-white justify-evenly text-xl shadow-md w-full font-medium">
+    <div className={`${isDarkTheme ? "bg-gray-700 text-white" : "bg-white text-gray-800"}`}>
+      <div className="flex justify-evenly text-xl shadow-md w-full font-medium">
         <div className="flex w-1/4 justify-evenly py-10">
           <h1>Home</h1>
           <h1>Products</h1>
-          <h1>About us</h1>
+          <h1>About us</h1> 
         </div>
         {!profileComplete && isLogin ? (
           <h1 className="text-lg text-center m-4 p-4">
@@ -92,11 +98,17 @@ const Header = () => {
               </>
             )}
             <button
-              className="mx-4 px-4 m-2 text-lg bg-blue-500 text-white font-semibold shadow-md rounded-md hover:bg-blue-600"
+              className="mx-4 px-4 m-4 text-lg bg-blue-500 text-white font-semibold shadow-md rounded-md hover:bg-blue-600"
               onClick={handleLogout}
             >
               Logout
             </button>
+            <button
+            className="flex m-4 mx-auto bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-blue-600"
+            onClick={handleToggleTheme}
+          >
+            {isDarkTheme ? "☀️" : "🌙"}
+          </button>
           </div>
         )}
       </div>
