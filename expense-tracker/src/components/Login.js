@@ -137,7 +137,7 @@ const Login = () => {
   return (
     <>
       {!forgotPassword ? (
-        <div className="w-1/4 h-auto mx-auto border bg-white border-gray-300 mt-40 text-center">
+        <div className="w-3/4 md:w-1/4 h-auto mx-auto border bg-white border-gray-300 mt-10 md:mt-40 text-center">
           <h1 className="text-2xl py-8 font-semibold text-center">
             {!singIn ? "Sign up" : "Login"}
           </h1>

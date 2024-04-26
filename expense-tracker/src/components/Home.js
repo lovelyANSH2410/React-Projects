@@ -1,6 +1,5 @@
 import React from "react";
 import Input from "./Input";
-import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Home = () => {

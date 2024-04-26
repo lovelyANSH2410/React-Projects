@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div
-      className={`${isDarkTheme ? "bg-gray-800 " : "bg-gray-200 text-gray-800"}`}
+      className={`${isDarkTheme ? "bg-gray-800 min-h-screen" : "bg-gray-200 min-h-screen text-gray-800"}`}
     >
       <Header />
       {!isLogin ? <Login /> : <Outlet />}

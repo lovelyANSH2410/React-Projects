@@ -121,7 +121,7 @@ const Input = () => {
   return (
     <div>
       <form
-        className="w-[50%] flex justify-center mx-auto my-10"
+        className="w-[60%] md:w-[50%] flex flex-col md:flex-row justify-center mx-auto my-10"
         onSubmit={handleSubmit}
       >
         <input
@@ -170,10 +170,10 @@ const Input = () => {
           Loading...
         </div>
       ) : (
-        <div className="w-[50%] mx-auto flex flex-wrap m-5">
+        <div className="w-[80%] md:w-[50%] mx-auto flex flex-col md:flex-row flex-wrap m-5">
           {data.map((item) => (
             <div
-              className="w-[30%] m-5 h-[40%] flex flex-col text-center mx-auto rounded-lg bg-white p-5 list-none border border-gray-400 text-xl font-semibold"
+              className="w-[80%] md:w-[30%] m-5 h-[40%] flex flex-col text-center mx-auto rounded-lg bg-white p-5 list-none border border-gray-400 text-xl font-semibold"
               key={item.key}
             >
               <div className="m-2 text-blue-500 text-3xl p-2">

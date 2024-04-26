@@ -55,8 +55,8 @@ const Header = () => {
       }
     };
 
-    fetchData();
-  }, [token_ID]);
+    isLogin && fetchData();
+  }, [token_ID, isLogin]);
 
   const handleLogout = () => {
     localStorage.removeItem("idToken");
@@ -65,12 +65,16 @@ const Header = () => {
   };
 
   return (
-    <div className={`${isDarkTheme ? "bg-gray-700 text-white" : "bg-white text-gray-800"}`}>
-      <div className="flex justify-evenly text-xl shadow-md w-full font-medium">
-        <div className="flex w-1/4 justify-evenly py-10">
+    <div
+      className={`${
+        isDarkTheme ? "bg-gray-700 text-white" : "bg-white text-gray-800"
+      }`}
+    >
+      <div className="flex flex-col md:flex-row justify-evenly text-xl shadow-md w-full font-medium">
+        <div className="flex w-3/4 mx-auto md:mx-0 md:w-1/4 justify-evenly py-4 md:py-10">
           <h1>Home</h1>
           <h1>Products</h1>
-          <h1>About us</h1> 
+          <h1>About us</h1>
         </div>
         {!profileComplete && isLogin ? (
           <h1 className="text-lg text-center m-4 p-4">
@@ -86,15 +90,15 @@ const Header = () => {
           ""
         )}
         {isLogin && (
-          <div className="flex my-5">
+          <div className="flex mx-auto md:mx-0 py-5">
             {profileComplete && (
               <>
                 <img
-                  className="w-14 h-14 mx-2 rounded-full"
+                  className="w-12 h-12 mt-3 mx-2 rounded-full"
                   src={photoURL}
                   alt="logo"
                 />
-                <h1 className="py-4">{displayName}</h1>
+                <h1 className="py-6">{displayName}</h1>
               </>
             )}
             <button
@@ -104,11 +108,11 @@ const Header = () => {
               Logout
             </button>
             <button
-            className="flex m-4 mx-auto bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-blue-600"
-            onClick={handleToggleTheme}
-          >
-            {isDarkTheme ? "☀️" : "🌙"}
-          </button>
+              className="flex m-4 mx-auto bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-blue-600"
+              onClick={handleToggleTheme}
+            >
+              {isDarkTheme ? "☀️" : "🌙"}
+            </button>
           </div>
         )}
       </div>
