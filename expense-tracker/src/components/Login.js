@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../store/authSlice";
 
 const Login = () => {
   const [singIn, setSignIn] = useState(true);
   const [errMsg, setErrMsg] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [forgotPassword, setForgotPassword] = useState(false);
 
@@ -53,7 +56,9 @@ const Login = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          localStorage.setItem("idToken", data.idToken);
+          const idToken = data.idToken;
+          localStorage.setItem("idToken", idToken);
+          dispatch(login({ tokenID: idToken, userID: enteredEmail }));
           localStorage.setItem("user", enteredEmail);
           navigate("/home");
         } else {

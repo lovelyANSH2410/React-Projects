@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/authSlice";
 
 const Header = () => {
   const [profile, setProfile] = useState(false);
-  const tokenID = localStorage.getItem("idToken");
+  const token_ID = useSelector((store) => store.auth.tokenID);
   const [displayName, setDisplayName] = useState(null);
   const [photoURL, setPhotoURL] = useState(null);
   const [profileComplete, setProfileComplete] = useState(false);
   const navigate = useNavigate();
-
-  const isLoggedIn = !!tokenID;
+  const dispatch = useDispatch();
+  const isLogin = useSelector((store) => store.auth.isAuthenticated);
 
   const handleProfile = () => {
     setProfile(!profile);
@@ -23,7 +25,7 @@ const Header = () => {
           "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD66jURNjlpKIlniFkfom3AFtWFiTeWF0w",
           {
             method: "POST",
-            body: JSON.stringify({ idToken: tokenID }),
+            body: JSON.stringify({ idToken: token_ID }),
             headers: {
               "Content-type": "application/json",
             },
@@ -48,10 +50,11 @@ const Header = () => {
     };
 
     fetchData();
-  }, [tokenID]);
+  }, [token_ID]);
 
   const handleLogout = () => {
     localStorage.removeItem("idToken");
+    dispatch(logout());
     navigate("/");
   };
 
@@ -63,7 +66,7 @@ const Header = () => {
           <h1>Products</h1>
           <h1>About us</h1>
         </div>
-        {!profileComplete && isLoggedIn ? (
+        {!profileComplete && isLogin ? (
           <h1 className="text-lg text-center m-4 p-4">
             Your profile is incomplete.{" "}
             <button
@@ -76,7 +79,7 @@ const Header = () => {
         ) : (
           ""
         )}
-        {isLoggedIn && (
+        {isLogin && (
           <div className="flex my-5">
             {profileComplete && (
               <>
@@ -89,7 +92,7 @@ const Header = () => {
               </>
             )}
             <button
-              className="mx-4 px-4 m-2 text-lg bg-blue-500 text-white font-semibold shadow-md rounded-md"
+              className="mx-4 px-4 m-2 text-lg bg-blue-500 text-white font-semibold shadow-md rounded-md hover:bg-blue-600"
               onClick={handleLogout}
             >
               Logout

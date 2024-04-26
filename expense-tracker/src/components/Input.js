@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addData } from "../store/expensesSlice";
 
 const Input = () => {
   const [expenses, setExpenses] = useState([]);
@@ -7,6 +9,8 @@ const Input = () => {
   const [editAmount, setEditAmount] = useState("");
   const [editDesc, setEditDesc] = useState("");
   const [editType, setEditType] = useState("");
+  const dispatch = useDispatch();
+  const data = useSelector((store) => store.expenses.expenses);
 
   const amount = useRef(null);
   const desc = useRef(null);
@@ -28,7 +32,7 @@ const Input = () => {
           category: data[key].category,
         });
       }
-      setExpenses(loadedExpenses);
+      dispatch(addData(loadedExpenses));
       setIsLoading(false);
     } catch (error) {
       console.error("Error", error);
@@ -49,7 +53,8 @@ const Input = () => {
     };
 
     try {
-      let url = "https://expense-tracker-dcfac-default-rtdb.firebaseio.com/expenses.json";
+      let url =
+        "https://expense-tracker-dcfac-default-rtdb.firebaseio.com/expenses.json";
       let method = "POST";
 
       if (editingExpense) {
@@ -70,7 +75,6 @@ const Input = () => {
         throw new Error("Failed to save data to Firebase");
       }
 
-      // Reset input fields and editing state after submission
       amount.current.value = "";
       desc.current.value = "";
       type.current.value = "";
@@ -98,9 +102,8 @@ const Input = () => {
   };
 
   const editExpense = (expense) => {
-    // Set editingExpense state to the selected expense
     setEditingExpense(expense);
-    // Populate input fields with existing data of the expense
+
     setEditAmount(expense.price);
     setEditDesc(expense.description);
     setEditType(expense.category);
@@ -139,7 +142,7 @@ const Input = () => {
           <option>Shopping</option>
           <option>Grocery</option>
         </select>
-        <button className="bg-blue-500 text-white shadow-md rounded-md m-2 p-2 font-semibold">
+        <button className="bg-blue-500 text-white shadow-md rounded-md m-2 p-2 font-semibold hover:bg-blue-600">
           {editingExpense ? "Update Expense" : "Add Expense"}
         </button>
       </form>
@@ -149,7 +152,7 @@ const Input = () => {
         </div>
       ) : (
         <div className="w-[50%] mx-auto flex flex-wrap m-5 p-10">
-          {expenses.map((item) => (
+          {data.map((item) => (
             <div
               className="w-[30%] m-5 h-[40%] flex flex-col text-center mx-auto rounded-lg  bg-white p-5 list-none border border-gray-400 text-xl font-semibold"
               key={item.key}
@@ -161,13 +164,13 @@ const Input = () => {
               <div className="m-2 p-2">₹{item.price}</div>
               <div className="flex justify-between">
                 <button
-                  className="bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold"
+                  className="bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-blue-600"
                   onClick={() => editExpense(item)}
                 >
                   Edit
                 </button>
                 <button
-                  className="bg-red-500 text-white shadow-md rounded-md p-2 font-semibold"
+                  className="bg-red-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-red-600"
                   onClick={() => deleteItem(item.key)}
                 >
                   Delete

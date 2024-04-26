@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const Profile = (props) => {
-  const tokenID = localStorage.getItem("idToken");
+  const token_ID = useSelector((store) => store.auth.tokenID);
   const name = useRef(null);
   const photoURL = useRef(null);
 
@@ -17,7 +18,7 @@ const Profile = (props) => {
         {
           method: "POST",
           body: JSON.stringify({
-            idToken: tokenID,
+            idToken: token_ID,
             displayName: enteredName,
             photoUrl: enteredURL,
             returnSecureToken: true,
