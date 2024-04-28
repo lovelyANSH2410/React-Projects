@@ -180,7 +180,7 @@ const Login = () => {
           </div>
         </div>
       ) : (
-        <div className="w-1/4 h-auto mx-auto border bg-white border-gray-300 mt-40 text-center">
+        <div className="w-3/4 md:w-1/4 h-auto mx-auto border bg-white border-gray-300 mt-40 text-center">
           <form
             className="flex justify-center pt-10 flex-col w-[70%] mx-auto space-y-4"
             onSubmit={(e) => {
