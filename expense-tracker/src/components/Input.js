@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addData } from "../store/expensesSlice";
+import Download from "./Download";
 
 const Input = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -155,7 +156,13 @@ const Input = () => {
           {editingExpense ? "Update Expense" : "Add Expense"}
         </button>
       </form>
-      <p className={`${isDarkTheme? "text-center text-lg font-semibold text-white" : "font-semibold text-center text-lg" }`}>
+      <p
+        className={`${
+          isDarkTheme
+            ? "text-center text-lg font-semibold text-white"
+            : "font-semibold text-center text-lg"
+        }`}
+      >
         Total Amount Spent : ₹{totalPrice}
       </p>
       {totalPrice > 10000 && (
@@ -165,6 +172,7 @@ const Input = () => {
           </button>
         </div>
       )}
+      <Download data={data} />
       {isLoading ? (
         <div className="text-3xl mt-10 text-center font-semibold">
           Loading...
