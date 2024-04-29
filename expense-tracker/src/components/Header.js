@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/authSlice";
 import { toggleTheme } from "../store/themeSlice";
@@ -73,9 +73,9 @@ const Header = () => {
       >
         <div className="flex flex-col md:flex-row justify-evenly text-xl shadow-md w-full font-medium">
           <div className="flex w-3/4 mx-auto md:mx-0 md:w-1/4 justify-evenly py-4 md:py-10">
-            <h1>Home</h1>
-            <h1>Products</h1>
-            <h1>About us</h1>
+            <Link to="/home">Home</Link>
+            <Link to="/products">Products</Link>
+            <Link to="/about">About us</Link>
           </div>
           {!profileComplete && isLogin ? (
             <h1 className="text-lg text-center m-1 p-2 md:p-4 md:m-6">

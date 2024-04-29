@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addData } from "../store/expensesSlice";
 import Download from "./Download";
+import { setTheme } from "../store/themeSlice";
 
 const Input = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -119,6 +120,10 @@ const Input = () => {
     setEditType(expense.category);
   };
 
+  const handleToggleTheme = () => {
+    dispatch(setTheme());
+  };
+
   return (
     <div>
       <form
@@ -129,6 +134,7 @@ const Input = () => {
           className="p-2 m-2 border border-gray-400"
           placeholder="Amount spent"
           type="number"
+          required
           ref={amount}
           value={editAmount}
           onChange={(e) => setEditAmount(e.target.value)}
@@ -137,6 +143,7 @@ const Input = () => {
           className="p-2 m-2 border border-gray-400"
           placeholder="Description"
           type="text"
+          required
           ref={desc}
           value={editDesc}
           onChange={(e) => setEditDesc(e.target.value)}
@@ -167,14 +174,23 @@ const Input = () => {
       </p>
       {totalPrice > 10000 && (
         <div>
-          <button className="flex m-4 mx-auto bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-blue-600">
+          <button
+            className="flex m-4 mx-auto bg-blue-500 text-white shadow-md rounded-md p-2 font-semibold hover:bg-blue-600"
+            onClick={handleToggleTheme}
+          >
             ✨Activate Premium✨
           </button>
         </div>
       )}
       <Download data={data} />
       {isLoading ? (
-        <div className="text-3xl mt-10 text-center font-semibold">
+        <div
+          className={`${
+            isDarkTheme
+              ? "text-white text-3xl mt-10 text-center font-semibold"
+              : "text-gray-800 text-3xl mt-10 text-center font-semibold"
+          }`}
+        >
           Loading...
         </div>
       ) : (

@@ -165,6 +165,7 @@ const Login = () => {
                 className="border border-gray-400 p-2 rounded-md"
                 placeholder="Confirm password"
                 onChange={matchPassword}
+                type="password"
                 ref={confirmpass}
               />
             )}

@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
+import AboutUs from "./components/About";
+import Products from "./components/Products";
 
 const appRouter = createBrowserRouter([
   {
@@ -16,6 +18,8 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Login /> },
       { path: "/home", element: <Home /> },
+      { path: "/about", element: <AboutUs /> },
+      { path: "/products", element: <Products /> },
     ],
   },
 ]);
