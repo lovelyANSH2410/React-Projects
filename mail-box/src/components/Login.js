@@ -92,8 +92,13 @@ const Login = () => {
         alt="bg"
         className="fixed object-cover w-full h-screen -z-20"
       />{" "}
+      <img
+          src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"
+          alt="logo"
+          className="w-40 p-4 ml-32"
+        />
       <form
-        className=" w-3/4 md:w-1/4 bg-black bg-opacity-70 space-y-5 text-center flex flex-col mx-auto mt-32 md:mt-48  shadow-md p-10"
+        className=" w-3/4 md:w-1/4 bg-black bg-opacity-70 space-y-5 text-center flex flex-col mx-auto mt-32 md:mt-38  shadow-md p-10"
         onSubmit={handleSubmit}
       >
         <p className="text-3xl font-semibold text-white m-2 p-2">
