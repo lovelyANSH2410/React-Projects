@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { bg_img } from "../utils/Constants";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../store/authSlice";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -9,6 +11,7 @@ const Login = () => {
   const password = useRef(null);
   const confirmPassword = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (errMsg) {
@@ -45,8 +48,8 @@ const Login = () => {
         if (response.ok) {
           const data = await response.json();
           const idToken = data.idToken;
-          console.log(idToken);
-          navigate("/home")
+          dispatch(login({ tokenID: idToken, userID: enteredEmail }));
+          navigate("/home");
         } else {
           const data = await response.json();
           console.log(data.error.message);
@@ -93,10 +96,10 @@ const Login = () => {
         className="fixed object-cover w-full h-screen -z-20"
       />{" "}
       <img
-          src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"
-          alt="logo"
-          className="w-40 p-4 ml-32"
-        />
+        src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"
+        alt="logo"
+        className="w-40 p-4 ml-32"
+      />
       <form
         className=" w-3/4 md:w-1/4 bg-black bg-opacity-70 space-y-5 text-center flex flex-col mx-auto mt-32 md:mt-38  shadow-md p-10"
         onSubmit={handleSubmit}

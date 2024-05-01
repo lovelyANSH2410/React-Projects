@@ -1,8 +1,19 @@
 import React from "react";
 import { bg_img } from "../utils/Constants";
-import Emails from "./Emails";
+import Dashboard from "./Dashboard";
+import { logout } from "../store/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <img
@@ -27,8 +38,14 @@ const Home = () => {
           className="w-[40%] ml-52 rounded-full bg-gray-900 text-white bg-opacity-35 text-lg px-6 m-3"
           placeholder="🔍 Search in mail"
         />
+        <button
+          className="px-4 my-4 shadow-md bg-gray-100 font-semibold text-lg rounded-full"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
-      <Emails />
+      <Dashboard />
     </div>
   );
 };

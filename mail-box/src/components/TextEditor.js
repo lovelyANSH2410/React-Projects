@@ -1,21 +1,98 @@
 import React, { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useSelector } from "react-redux";
 
 const TextEditor = (props) => {
   const [editorState, setEditorState] = useState("");
   const [to, setTo] = useState("");
   const [subject, setSubject] = useState("");
+  const userID = useSelector((store) => store.auth.userID);
+
+  const sendEmailTo = async () => {
+    const details = {
+      to: to,
+      subject: subject,
+      text: editorState.blocks,
+    };
+    const dummyEmail = to
+      .toLowerCase()
+      .split("")
+      .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+      .join("");
+
+    try {
+      const response = await fetch(
+        `https://mail-box-a87a6-default-rtdb.firebaseio.com/${dummyEmail}/inbox.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(details),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
+
+  const sendMailFrom = async () => {
+    const details = {
+      to: to,
+      subject: subject,
+      text: editorState.blocks,
+    };
+    const dummyEmail = userID
+      .toLowerCase()
+      .split("")
+      .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+      .join("");
+
+    try {
+      const response = await fetch(
+        `https://mail-box-a87a6-default-rtdb.firebaseio.com/${dummyEmail}/sent.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(details),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
 
   const sendEmail = () => {
-    // Logic to send email
-    console.log("Email sent!");
+    sendEmailTo();
+    sendMailFrom();
+    setTo("");
+    setEditorState("");
+    setSubject("");
   };
 
   return (
-    <div className="container mx-auto mt-72 w-1/2 mr-10">
+    <div className="absolute container mx-auto mt-72 w-1/2 ml-[28%]">
       <div className="bg-white shadow-md p-6 rounded-lg">
-        <h1 className="text-lg font-semibold mb-4 py-2 bg-slate-100 px-2">New Message</h1>
+        <h1 className="text-lg font-semibold mb-4 py-2 bg-slate-100 px-2">
+          New Message
+        </h1>
         <div className="mb-4">
           <label htmlFor="to" className="block mb-2 text-gray-700 font-bold">
             To:
@@ -60,8 +137,10 @@ const TextEditor = (props) => {
         >
           Send
         </button>
-        <button className="bg-red-500 m-2 shadow-md hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        onClick={props.toggleCompose}>
+        <button
+          className="bg-red-500 m-2 shadow-md hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          onClick={props.toggleCompose}
+        >
           Close
         </button>
       </div>
