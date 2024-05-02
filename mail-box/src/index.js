@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
+import Message from "./components/Message";
 
 const appRouter = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Login /> },
       { path: "/home", element: <Home /> },
+      { path: "/mail/:id", element: <Message /> },
     ],
   },
 ]);

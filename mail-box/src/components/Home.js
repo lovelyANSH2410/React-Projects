@@ -39,7 +39,7 @@ const Home = () => {
           placeholder="🔍 Search in mail"
         />
         <button
-          className="px-4 my-4 shadow-md bg-gray-100 font-semibold text-lg rounded-full"
+          className="px-4 my-4 shadow-md bg-gray-100 hover:bg-gray-300 transition duration-300 ease-in-out font-semibold text-lg rounded-full"
           onClick={handleLogout}
         >
           Logout

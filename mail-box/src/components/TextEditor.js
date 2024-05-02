@@ -9,11 +9,12 @@ const TextEditor = (props) => {
   const [subject, setSubject] = useState("");
   const userID = useSelector((store) => store.auth.userID);
 
-  const sendEmailTo = async () => {
+  const sendEmailFrom = async () => {
     const details = {
-      to: to,
+      from: userID,
       subject: subject,
       text: editorState.blocks,
+      isRead: false,
     };
     const dummyEmail = to
       .toLowerCase()
@@ -44,7 +45,7 @@ const TextEditor = (props) => {
     }
   };
 
-  const sendMailFrom = async () => {
+  const sendMailTo = async () => {
     const details = {
       to: to,
       subject: subject,
@@ -80,8 +81,8 @@ const TextEditor = (props) => {
   };
 
   const sendEmail = () => {
-    sendEmailTo();
-    sendMailFrom();
+    sendMailTo();
+    sendEmailFrom();
     setTo("");
     setEditorState("");
     setSubject("");
