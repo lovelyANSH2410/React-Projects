@@ -46,12 +46,12 @@ const Message = ({ selectedEmailId, handleToggle }) => {
   }, []);
 
   return (
-    <div className=" absolute container rounded-2xl p-4 bg-gray-200 h-[60%] mt-20 w-1/2 ml-[28%]">
+    <div className="absolute container rounded-2xl p-4 bg-white h-[60%] top-56 w-1/2 ml-[28%] z-50">
       <div className="text-lg">
         Subject : {data1.subject} <i class="uil uil-message"></i>
       </div>
-      <div className="text-lg font-medium">From : {data1.from}</div>
-
+      <div className="text-lg font-medium my-2">From : {data1.from}</div>
+      <div className="my-10">{data1.text}</div>
       <button
         className="bg-gray-400 my-4 p-2 text-white rounded-md shadow-md font-semibold"
         onClick={() => handleToggle()}

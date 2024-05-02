@@ -32,6 +32,7 @@ const Inbox = () => {
           isRead: json[key].isRead,
           subject: json[key].subject,
           from: json[key].from,
+          text: json[key].text,
         });
       }
       setEmails(loadedData.reverse());
@@ -74,8 +75,8 @@ const Inbox = () => {
 
   const handleToggle = () => {
     setToggle(!toggle);
-    fetchData()
-  }
+    fetchData();
+  };
 
   const handleEmailClick = (id) => {
     setSelectedEmailId(id);
@@ -91,10 +92,10 @@ const Inbox = () => {
         <h1 className="text-3xl text-center m-20">Searching for emails...</h1>
       ) : (
         emails.map((item) => (
-          <div>
+          <div className="flex w-full border-b border-b-.5 border-black">
             <Link
               key={item.id}
-              className="flex w-full border-b border-b-.5 border-black p-4 py-6"
+              className="flex w-[95%] p-4 py-6"
               onClick={() => handleEmailClick(item.id)}
             >
               <div className="w-[30%] text-lg px-5">
@@ -108,14 +109,19 @@ const Inbox = () => {
               <div className="w-[60%] text-lg px-5 font-semibold">
                 Subject: {item.subject}
               </div>
-              <button onClick={() => handleDelete(item.id)}>
-                <i class="uil uil-trash-alt"></i>
-              </button>
             </Link>
+            <button onClick={() => handleDelete(item.id)}>
+              <i class="uil uil-trash-alt"></i>
+            </button>
           </div>
         ))
       )}
-      {toggle && <Message selectedEmailId={selectedEmailId} handleToggle={handleToggle} />}
+      {toggle && (
+        <Message
+          selectedEmailId={selectedEmailId}
+          handleToggle={handleToggle}
+        />
+      )}
     </div>
   );
 };

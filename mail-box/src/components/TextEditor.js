@@ -13,7 +13,7 @@ const TextEditor = (props) => {
     const details = {
       from: userID,
       subject: subject,
-      text: editorState.blocks,
+      text: editorState.getCurrentContent().getPlainText(),
       isRead: false,
     };
     const dummyEmail = to
@@ -49,7 +49,7 @@ const TextEditor = (props) => {
     const details = {
       to: to,
       subject: subject,
-      text: editorState.blocks,
+      text: editorState.getCurrentContent().getPlainText(),
     };
     const dummyEmail = userID
       .toLowerCase()
