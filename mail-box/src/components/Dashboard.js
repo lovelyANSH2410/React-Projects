@@ -21,7 +21,7 @@ const Dashboard = () => {
     setShowSentEmails(false);
   };
 
-  const Mails = emails?.filter((mail) => mail);
+  const Mails = emails?.filter((mail) => mail.isRead === false);
 
   return (
     <div className="relative ml-32 flex m-10 space-x-5">

@@ -4,10 +4,12 @@ import Dashboard from "./Dashboard";
 import { logout } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const onlineStatus = useOnlineStatus();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -44,6 +46,7 @@ const Home = () => {
         >
           Logout
         </button>
+        <p className="mx-40 px-8 rounded-full mt-2 py-5 bg-opacity-50 bg-gray-900 text-lg text-white">Online Status: {onlineStatus ? "🟢" : "🔴"}</p>
       </div>
       <Dashboard />
     </div>
