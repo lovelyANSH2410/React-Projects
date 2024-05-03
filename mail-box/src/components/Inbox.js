@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Message from "./Message";
 import { addData } from "../store/emailSlice";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Inbox = () => {
   const [emails, setEmails] = useState(null);
@@ -11,6 +12,7 @@ const Inbox = () => {
   const userID = useSelector((store) => store.auth.userID);
   const [selectedEmailId, setSelectedEmailId] = useState(null);
   const dispatch = useDispatch();
+  const onlineStatus = useOnlineStatus();
 
   const fetchData = async () => {
     const dummyEmail = userID
@@ -90,6 +92,8 @@ const Inbox = () => {
       )}
       {isLoading ? (
         <h1 className="text-3xl text-center m-20">Searching for emails...</h1>
+      ) : !onlineStatus ? (
+        <p className="text-3xl text-center m-20">Unable to connect to the internet.</p>
       ) : (
         emails.map((item) => (
           <div className="flex w-full border-b border-b-.5 border-black">
