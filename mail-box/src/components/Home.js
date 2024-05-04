@@ -30,23 +30,23 @@ const Home = () => {
           <button>🎦Meet</button>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex mt-2" style={{ height: "90px" }}>
         <img
           src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"
           alt="logo"
-          className="w-40 p-4 ml-32"
+          className="w-[8%] p-4 ml-32"
         />
         <input
           className="w-[40%] ml-52 rounded-full bg-gray-900 text-white bg-opacity-35 text-lg px-6 m-3"
           placeholder="🔍 Search in mail"
         />
         <button
-          className="px-4 my-4 shadow-md bg-gray-100 hover:bg-gray-300 transition duration-300 ease-in-out font-semibold text-lg rounded-full"
+          className="px-4 my-3 shadow-md bg-gray-100 hover:bg-gray-300 transition duration-300 ease-in-out font-semibold text-lg rounded-full"
           onClick={handleLogout}
         >
           Logout
         </button>
-        <p className="mx-40 px-8 rounded-full mt-2 py-5 bg-opacity-50 bg-gray-900 text-lg text-white">Online Status: {onlineStatus ? "🟢" : "🔴"}</p>
+        <div className="mx-48 w-52 px-8 my-3 py-3 rounded-full bg-opacity-50 bg-gray-900 text-lg text-white">Online: {onlineStatus ? "🟢" : "🔴"}</div>
       </div>
       <Dashboard />
     </div>

@@ -14,6 +14,7 @@ const Input = () => {
   const data = useSelector((store) => store.expenses.expenses);
   const [totalPrice, setTotalPrice] = useState(null);
   const isDarkTheme = useSelector((store) => store.theme.isDarkTheme);
+  const userID = useSelector((store) => store.auth.userID);
 
   const amount = useRef(null);
   const desc = useRef(null);
@@ -21,8 +22,13 @@ const Input = () => {
 
   const fetchData = async () => {
     try {
+      const dummyEmail = userID
+        .toLowerCase()
+        .split("")
+        .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+        .join("");
       const response = await fetch(
-        "https://expense-tracker-dcfac-default-rtdb.firebaseio.com/expenses.json"
+        `https://expense-tracker-dcfac-default-rtdb.firebaseio.com/${dummyEmail}/expenses.json`
       );
       const data = await response.json();
       const loadedExpenses = [];
@@ -63,13 +69,18 @@ const Input = () => {
       category: type.current.value,
     };
 
+    const dummyEmail = userID
+      .toLowerCase()
+      .split("")
+      .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+      .join("");
+
     try {
-      let url =
-        "https://expense-tracker-dcfac-default-rtdb.firebaseio.com/expenses.json";
+      let url = `https://expense-tracker-dcfac-default-rtdb.firebaseio.com/${dummyEmail}/expenses.json`;
       let method = "POST";
 
       if (editingExpense) {
-        url = `https://expense-tracker-dcfac-default-rtdb.firebaseio.com/expenses/${editingExpense.key}.json`;
+        url = `https://expense-tracker-dcfac-default-rtdb.firebaseio.com/${dummyEmail}/expenses/${editingExpense.key}.json`;
         method = "PATCH";
       }
 
@@ -100,8 +111,13 @@ const Input = () => {
 
   const deleteItem = async (key) => {
     try {
+      const dummyEmail = userID
+        .toLowerCase()
+        .split("")
+        .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+        .join("");
       await fetch(
-        `https://expense-tracker-dcfac-default-rtdb.firebaseio.com/expenses/${key}.json`,
+        `https://expense-tracker-dcfac-default-rtdb.firebaseio.com/${dummyEmail}/expenses/${key}.json`,
         {
           method: "DELETE",
         }

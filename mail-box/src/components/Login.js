@@ -75,7 +75,7 @@ const Login = () => {
         if (response.ok) {
           //
         } else {
-          const data = (await response).json();
+          const data = await response.json();
           console.log(data.error.message);
         }
       } catch (error) {
@@ -102,7 +102,7 @@ const Login = () => {
       />
       <form
         className=" w-3/4 md:w-1/4 bg-black bg-opacity-70 space-y-5 text-center flex flex-col mx-auto mt-32 md:mt-38  shadow-md p-10"
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {handleSubmit(e)}}
       >
         <p className="text-3xl font-semibold text-white m-2 p-2">
           {isSignIn ? "Login" : "Sign up"}
