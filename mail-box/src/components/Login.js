@@ -98,11 +98,13 @@ const Login = () => {
       <img
         src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_dark_1x_r5.png"
         alt="logo"
-        className="w-40 p-4 ml-32"
+        className="w-40 p-4 mx-auto md:ml-32"
       />
       <form
-        className=" w-3/4 md:w-1/4 bg-black bg-opacity-70 space-y-5 text-center flex flex-col mx-auto mt-32 md:mt-38  shadow-md p-10"
-        onSubmit={(e) => {handleSubmit(e)}}
+        className=" w-[90%] md:w-1/4 bg-black bg-opacity-70 space-y-5 text-center flex flex-col mx-auto mt-10 md:mt-32 md:mt-38  shadow-md p-10"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
       >
         <p className="text-3xl font-semibold text-white m-2 p-2">
           {isSignIn ? "Login" : "Sign up"}
@@ -132,22 +134,22 @@ const Login = () => {
           {isSignIn ? "Login" : "Sign up"}
         </button>
         <h1 className="font-semibold p-3 text-white">Forgot password?</h1>
-        {isSignIn ? (
-          <p className="font-semibold text-white">
-            New user?{" "}
-            <button className="text-orange-500" onClick={toggleSignIn}>
-              Sign up
-            </button>
-          </p>
-        ) : (
-          <p className="font-semibold text-white">
-            Alread registered?{" "}
-            <button className="text-orange-500" onClick={toggleSignIn}>
-              Login
-            </button>
-          </p>
-        )}
       </form>
+      {isSignIn ? (
+        <p className="font-semibold text-white mx-auto">
+          New user?{" "}
+          <button className="text-orange-500" onClick={toggleSignIn}>
+            Sign up
+          </button>
+        </p>
+      ) : (
+        <p className="font-semibold text-white mx-auto">
+          Alread registered?{" "}
+          <button className="text-orange-500" onClick={toggleSignIn}>
+            Login
+          </button>
+        </p>
+      )}
     </div>
   );
 };

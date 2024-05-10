@@ -88,33 +88,42 @@ const Inbox = () => {
   return (
     <div>
       {!isLoading && emails.length === 0 && (
-        <p className="text-3xl text-center m-20">Found no emails.</p>
+        <p className="md:text-3xl text-lg text-center py-20 md:py-0 md:m-20">
+          Found no emails.
+        </p>
       )}
       {isLoading ? (
-        <h1 className="text-3xl text-center m-20">Searching for emails...</h1>
+        <h1 className="md:text-3xl text-lg text-center py-20 md:py-0 md:m-20">
+          Searching for emails...
+        </h1>
       ) : !onlineStatus ? (
-        <p className="text-3xl text-center m-20">Unable to connect to the internet.</p>
+        <p className="md:text-3xl text-lg text-center py-20 md:py-0 md:m-20">
+          Unable to connect to the internet.
+        </p>
       ) : (
         emails.map((item) => (
-          <div className="flex w-full border-b border-b-.5 border-black">
+          <div
+            className="md:flex w-[100%] md:w-full border-b border-b-.5 border-black"
+            key={item.id}
+          >
             <Link
               key={item.id}
-              className="flex w-[95%] p-4 py-6"
+              className="md:flex md:w-[90%] md:px-0 p-4 py-6"
               onClick={() => handleEmailClick(item.id)}
             >
-              <div className="w-[30%] text-lg px-5">
+              <div className="md:w-[30%] text-lg px-5">
                 <i class="uil uil-message"></i> From: {item.from}
               </div>
               {!item.isRead && (
-                <button className=" bg-blue-600 text-white text-xs p-2 rounded-xl">
+                <button className=" bg-blue-600 text-white mx-4 md:mx-0 text-xs p-1 rounded-xl">
                   New
                 </button>
               )}
-              <div className="w-[60%] text-lg px-5 font-semibold">
+              <div className="md:w-[60%] md:text-lg px-5 font-semibold">
                 Subject: {item.subject}
               </div>
             </Link>
-            <button onClick={() => handleDelete(item.id)}>
+            <button onClick={() => handleDelete(item.id)} className="py-4">
               <i class="uil uil-trash-alt"></i>
             </button>
           </div>

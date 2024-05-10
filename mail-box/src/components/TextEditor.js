@@ -89,7 +89,7 @@ const TextEditor = (props) => {
   };
 
   return (
-    <div className="absolute container mx-auto mt-72 w-1/2 ml-[28%]">
+    <div className="absolute container mx-auto md:mt-72 w-[90%] md:w-1/2 md:ml-[28%]">
       <div className="bg-white shadow-md p-6 rounded-lg">
         <h1 className="text-lg font-semibold mb-4 py-2 bg-slate-100 px-2">
           New Message

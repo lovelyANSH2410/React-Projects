@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SentEmails = () => {
   const [emails, setEmails] = useState(null);
@@ -67,20 +68,26 @@ const SentEmails = () => {
   return (
     <div>
       {isLoading ? (
-        <h1 className="text-3xl text-center m-20">Searching for emails...</h1>
+        <h1 className="md:text-3xl text-lg text-center py-20 md:py-0 md:m-20">
+          Searching for emails...
+        </h1>
       ) : (
         emails.map((item) => (
           <div
             key={item.id}
-            className="flex w-full border-b border-b-.5 border-black p-4 py-6"
+            className="md:flex w-full border-b border-b-.5 border-black p-4 py-6"
           >
-            <div className="w-[30%] text-lg px-5">
+            <div className="md:w-[30%] text-lg px-5">
               <i class="uil uil-message"></i> To: {item.to}
             </div>
-            <div className="w-[60%] text-lg px-5 font-semibold">
+            <div className="md:w-[60%] text-lg px-5 font-semibold">
               Subject: {item.subject}
             </div>
-            <button onClick={() => handleDelete(item.id)}>
+
+            <button
+              onClick={() => handleDelete(item.id)}
+              className="mx-4 md:mx-0"
+            >
               <i class="uil uil-trash-alt"></i>
             </button>
           </div>
