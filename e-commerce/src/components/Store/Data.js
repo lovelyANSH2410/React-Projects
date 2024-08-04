@@ -20,7 +20,7 @@ export const data = [
     name: "Tumbler",
     desc: "Space ship model water Tumbler",
     image_URL:
-      "https://shop.spacex.com/cdn/shop/files/StarlinkAnywhereTumblerMiniMilitaryGreen_600x.png?v=1700088198",
+      "https://shop.spacex.com/cdn/shop/files/StarlinkAnywhereTumblerMiniMilitaryGreen_9c37bb5c-dd35-44cd-ae4a-bcb0f47ecd68_800x.png?v=1713916380",
 
     price: 46,
   },
